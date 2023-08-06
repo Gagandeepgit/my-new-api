@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const colors = require("colors");
 
 
 const app = express();
@@ -8,11 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/home", (req,res) => {
-    res.json({
-        msg:"Hi Im from express app-- after github ci cd pipeline"
-    })
-})
 
 //routes middleware
 app.use("/users",require("./routes/user"));
@@ -25,13 +21,13 @@ app.use((req, res, next) => {
     next(error);
 });
 
-const PORT = 8000;
-mongoose.connect("mongodb+srv://sachin:02112003@mycluster.vpmrumy.mongodb.net/crud-app?retryWrites=true&w=majority")
+const PORT = 8008;
+mongoose.connect("mongodb+srv://Gagan:gagan1234@cluster0.0lsmaun.mongodb.net/cicd?retryWrites=true&w=majority")
 .then(()=>{
-    console.log("database connected");
-    app.listen(PORT,()=>console.log(`server is running on port ${PORT}`))
+    console.log("database connected Succesfully".bgYellow.black);
+    app.listen(PORT,()=>console.log(`server is running on port ${PORT}`.bgCyan.black))
 })
 .catch((err)=>{
-   console.log(err.message);
+   console.log(err.message.bgRed.black);
 })
 
